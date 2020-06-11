@@ -5,8 +5,10 @@ services:
     image: py3
     build:
       context: .
-      dockerfile: ./docker/py3.7/Dockerfile
-  web:
-    build: .
+      dockerfile: docker/py3.7/Dockerfile
     ports:
       - "6000:6000"
+  # web:
+  #   build: .
+  #   ports:
+  #     - "6000:6000"

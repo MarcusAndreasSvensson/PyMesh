@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
-import requests
+
+from create_calc_mesh import create_calc_mesh
 
 app = Flask(__name__)
 
@@ -12,12 +13,12 @@ app = Flask(__name__)
     "/", methods=["GET"],
 )
 @cross_origin()
-def mesh_converter(mesh_id):
+def mesh_converter():
     # TODO Check for input type
-    # gs_filename = convert_mesh(mesh_id)
+    gs_filename = create_calc_mesh("signedUrl")
 
-    # return jsonify({"gsFilename": gs_filename})
-    return jsonify({"gsFilename": "OMG DET FUNKAR"})
+    return jsonify({"gsFilename": gs_filename})
+    # return jsonify({"gsFilename": "OMG DET FUNKAR"})
 
 
 if __name__ == "__main__":
