@@ -46,7 +46,7 @@ def create_calc_mesh(geometry_id, file_format_out="stl"):
     )
     
 
-    return tet_filename
+    return tri_filename, tet_filename
 
 def get_trimesh(geometry_id):
     query = """query geometry($geometry_id: String!){
