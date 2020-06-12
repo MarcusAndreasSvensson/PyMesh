@@ -10,12 +10,12 @@ app = Flask(__name__)
 
 
 @app.route(
-    "/", methods=["GET"],
+    "/<string:geometry_id>", methods=["GET"],
 )
 @cross_origin()
-def mesh_converter():
+def mesh_converter(geometry_id):
     # TODO Check for input type
-    gs_filename = create_calc_mesh("signedUrl")
+    gs_filename = create_calc_mesh(geometry_id)
 
     return jsonify({"gsFilename": gs_filename})
     # return jsonify({"gsFilename": "OMG DET FUNKAR"})

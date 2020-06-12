@@ -2,6 +2,7 @@ version: "3.4"
 
 services:
   py3:
+    tty: true
     image: py3
     build:
       context: .

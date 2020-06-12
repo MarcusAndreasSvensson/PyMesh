@@ -32,8 +32,11 @@ RUN git submodule update --init && \
 
 COPY src/Api/API.py API.py
 COPY src/Api/create_calc_mesh.py create_calc_mesh.py
+COPY src/Api/FLINCKSolid-ed5cf9e81eb7.json FLINCKSolid-ed5cf9e81eb7.json
 COPY src/Api/1591733049157_ABSKG-40AL9_VAZPF-008_132S_76NO_102332978.stl 1591733049157_ABSKG-40AL9_VAZPF-008_132S_76NO_102332978.stl
 RUN pip install flask
 RUN pip install flask-cors
 RUN pip install requests
-CMD [ "python3", "API.py" ]
+RUN pip install google-cloud-storage
+RUN pip install numpy
+CMD [ "python3", "-u", "API.py" ]
