@@ -42,7 +42,7 @@ def create_calc_mesh(geometry_id, file_format_out="stl"):
         filename=tri_filename
     )
     tet_blob.upload_from_filename(
-        filename=tet_filename
+        filename=tet_filename“
     )
     
 

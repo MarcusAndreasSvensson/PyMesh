@@ -15,9 +15,9 @@ app = Flask(__name__)
 @cross_origin()
 def mesh_converter(geometry_id):
     # TODO Check for input type
-    gs_filename = create_calc_mesh(geometry_id)
+    tri_filename, tet_filename = create_calc_mesh(geometry_id)
 
-    return jsonify({"gsFilename": gs_filename})
+    return jsonify({"gsFilenameTri": tri_filename, "gsFilenameTet": tet_filename})
     # return jsonify({"gsFilename": "OMG DET FUNKAR"})
 
 
