@@ -18,7 +18,6 @@ def mesh_converter(geometry_id):
     tri_filename, tet_filename = create_calc_mesh(geometry_id)
 
     return jsonify({"gsFilenameTri": tri_filename, "gsFilenameTet": tet_filename})
-    # return jsonify({"gsFilename": "OMG DET FUNKAR"})
 
 
 if __name__ == "__main__":

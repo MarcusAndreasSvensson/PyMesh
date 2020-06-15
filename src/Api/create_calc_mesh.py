@@ -16,20 +16,26 @@ from google.cloud import storage
 base_storage_url = "https://ca5c14c10222.ngrok.io/graphql"  # TODO TEMP
 
 
-def create_calc_mesh(geometry_id, file_format_out="stl"):
+def create_calc_mesh(geometry_id, file_format_out="ply"):
     trimesh, mesh_name = get_trimesh(geometry_id)
     # trimesh = pymesh.load_mesh(io.BytesIO(r.content))
 
     # Regenerating trimesh for calculation compliance
     trimesh = fix_mesh(trimesh, detail="low")
+    trimesh.add_attribute("vertex_normal")
+    trimesh.get_attribute("vertex_normal")
+    trimesh.add_attribute("face_normal")
+    trimesh.get_attribute("face_normal")
 
     cell_size = 100  ## TOOD should be fraction of total mesh size
     tetmesh = pymesh.tetrahedralize(trimesh, cell_size, with_timing=False)
+    # tetmesh.add_attribute("face_normal")
+    # tetmesh.get_attribute("face_normal")
 
     tri_filename = f"{int(time.time() * 1000)}_{mesh_name.split('.')[0][14:]}_tri.{file_format_out}"
     tet_filename = f"{int(time.time() * 1000)}_{mesh_name.split('.')[0][14:]}_tet.{file_format_out}"
 
-    pymesh.meshio.save_mesh(tri_filename, trimesh)
+    pymesh.meshio.save_mesh(tri_filename, trimesh, *trimesh.get_attribute_names())
     pymesh.meshio.save_mesh(tet_filename, tetmesh)
 
     client = storage.Client.from_service_account_json("FLINCKSolid-ed5cf9e81eb7.json")
