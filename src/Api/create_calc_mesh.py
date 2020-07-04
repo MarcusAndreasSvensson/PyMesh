@@ -13,7 +13,7 @@ import time
 from google.cloud import storage
 
 # base_storage_url = "http://localhost:4000/graphql"  # TODO TEMP
-base_storage_url = "https://2a9bfb64789f.ngrok.io/graphql"  # TODO TEMP
+base_storage_url = "https://92883b984576.ngrok.io/graphql"  # TODO TEMP
 
 
 def create_calc_mesh(geometry_id, file_format_out="ply"):
@@ -21,7 +21,7 @@ def create_calc_mesh(geometry_id, file_format_out="ply"):
     # trimesh = pymesh.load_mesh(io.BytesIO(r.content))
 
     # Regenerating trimesh for calculation compliance
-    trimesh = fix_mesh(trimesh, detail="low")
+    trimesh = fix_mesh(trimesh, detail="normal")
     # trimesh.add_attribute("vertex_normal")
     # trimesh.get_attribute("vertex_normal")
     # trimesh.add_attribute("face_normal")
@@ -76,7 +76,6 @@ def get_trimesh(geometry_id):
     mesh_name = test_url[4].split("?")[0]
     test_url = "https://storage.googleapis.com/" + test_url[3] + "/" + mesh_name
     new_url = "https://storage.googleapis.com/" + test_url
-    # render_mesh_path = "1591733049157_ABSKG-40AL9_VAZPF-008_132S_76NO_102332978.stl"
 
     # Check for correct file format
     file_format_in = new_url.split(".")[-1].lower()

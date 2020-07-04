@@ -19,6 +19,16 @@ def mesh_converter(geometry_id):
 
     return jsonify({"gsFilenameTri": tri_filename, "gsFilenameTet": tet_filename})
 
+######### TESTING #########
+
+
+@app.route(
+    "/test", methods=["GET"],
+)
+@cross_origin()
+def test_connection():
+    return jsonify({"code": "OK"})
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=6000)
