@@ -13,7 +13,7 @@ import time
 from google.cloud import storage
 
 # base_storage_url = "http://localhost:4000/graphql"  # TODO TEMP
-base_storage_url = "https://92883b984576.ngrok.io/graphql"  # TODO TEMP
+base_storage_url = "https://a9d5c05b02bd.ngrok.io/graphql"  # TODO TEMP
 
 
 def create_calc_mesh(geometry_id, file_format_out="ply"):
@@ -27,7 +27,7 @@ def create_calc_mesh(geometry_id, file_format_out="ply"):
     # trimesh.add_attribute("face_normal")
     # trimesh.get_attribute("face_normal")
 
-    cell_size = 100  ## TOOD should be fraction of total mesh size
+    cell_size = 10  ## TOOD should be fraction of total mesh size
     tetmesh = pymesh.tetrahedralize(trimesh, cell_size, with_timing=False)
     # print("#"*40, dir(tetmesh))
     tetmesh.add_attribute("voxels")
